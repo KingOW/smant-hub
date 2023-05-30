@@ -14,13 +14,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <package.path>${project.build.directory}/app</package.path>
-        <org.projectlombok.lombok.version>1.18.26</org.projectlombok.lombok.version>
-        <com.google.guava.version>31.1-jre</com.google.guava.version>
+        <org.projectlombok.lombok.version>1.18.28</org.projectlombok.lombok.version>
+        <com.google.guava.version>32.0.0-jre</com.google.guava.version>
 
         <!--接口文档-->
         <io.springfox.swagger2.version>3.0.0</io.springfox.swagger2.version>
         <!-- alibaba fastjson2 性能提高 相关配置版本-->
-        <com.alibaba.fastjson2.version>2.0.26</com.alibaba.fastjson2.version>
+        <com.alibaba.fastjson2.version>2.0.33</com.alibaba.fastjson2.version>
 
         <!--httpcomponenets client版本设置-->
         <org.apache.httpcomponents.client5.version>5.2.1</org.apache.httpcomponents.client5.version>
@@ -31,11 +31,11 @@
         <org.apache.logging.log4j.version>2.20.0</org.apache.logging.log4j.version>
 
         <!-- Spring -->
-        <org.springframework.cloud.version>2021.0.4</org.springframework.cloud.version>
+        <org.springframework.cloud.version>2022.0.3</org.springframework.cloud.version>
         <com.alibaba.cloud.spring.version>2021.0.4.0</com.alibaba.cloud.spring.version>
 
         <!--        <org.springframework.boot.version>2.6.7</org.springframework.boot.version>-->
-        <org.springframework.boot.version>3.0.5</org.springframework.boot.version>
+        <org.springframework.boot.version>3.1.0</org.springframework.boot.version>
         <org.springframework.springloaded.version>1.2.8.RELEASE</org.springframework.springloaded.version>
         <!--        <org.springframework.data.version>2.6.4</org.springframework.data.version>-->
         <org.springframework.data.version>3.0.5</org.springframework.data.version>
@@ -43,7 +43,7 @@
         <org.springframework.kafka.version>3.0.5</org.springframework.kafka.version>
         <!--        <org.springframework.plugin.version>2.0.0.RELEASE</org.springframework.plugin.version>-->
         <org.springframework.plugin.version>3.0.0</org.springframework.plugin.version>
-        <io.lettuce.lettuce-core.version>6.2.3.RELEASE</io.lettuce.lettuce-core.version>
+        <io.lettuce.lettuce-core.version>6.2.4.RELEASE</io.lettuce.lettuce-core.version>
 
         <javax.servlet.version>4.0.1</javax.servlet.version>
         <com.lmax.disruptor.version>3.4.4</com.lmax.disruptor.version>
@@ -51,16 +51,18 @@
         <!-- MyBatis-->
         <org.mybatis.version>3.5.13</org.mybatis.version>
         <org.mybatis.typehandlers.jsr310.version>1.0.2</org.mybatis.typehandlers.jsr310.version>
-        <org.mybatis.spring.version>3.0.1</org.mybatis.spring.version>
+        <org.mybatis.spring.version>3.0.2</org.mybatis.spring.version>
         <org.mybatis.spring.boot.version>3.0.1</org.mybatis.spring.boot.version>
+        <com.baomidou.mybatis-plus.version>3.5.3.1</com.baomidou.mybatis-plus.version>
 
-        <com.alibaba.druid.version>1.2.16</com.alibaba.druid.version>
-        <com.alibaba.druid.spring.boot.version>1.2.16</com.alibaba.druid.spring.boot.version>
-        <mysql.connector.java.version>8.0.32</mysql.connector.java.version>
+
+        <com.alibaba.druid.version>1.2.18</com.alibaba.druid.version>
+        <com.alibaba.druid.spring.boot.version>1.2.18</com.alibaba.druid.spring.boot.version>
+        <mysql.connector.java.version>8.0.33</mysql.connector.java.version>
         <org.postgresql.version>42.6.0</org.postgresql.version>
 
         <io.springfox.boot.starter.version>3.0.0</io.springfox.boot.starter.version>
-        <org.springdoc.openapi.ui.version>1.6.15</org.springdoc.openapi.ui.version>
+        <org.springdoc.openapi.ui.version>1.7.0</org.springdoc.openapi.ui.version>
 
         <!-- Kafka-->
         <org.apacke.kafka.version>3.4.0</org.apacke.kafka.version>
@@ -71,7 +73,7 @@
         <!-- redisson -->
         <org.redisson.version>3.20.0</org.redisson.version>
         <!--   jedis     -->
-        <redis.clients.jedis.version>4.3.2</redis.clients.jedis.version>
+        <redis.clients.jedis.version>4.4.1</redis.clients.jedis.version>
 
         <commons.codec.version>1.15</commons.codec.version>
         <!-- plugin version -->
@@ -84,10 +86,10 @@
 
 
         <maven.deploy.release.repository.url>
-            http://42.194.128.146:8081/nexus/content/repositories/smant-repostory-releases/
+            http://139.224.1.8:8081/nexus/content/repositories/smant-repostory-releases/
         </maven.deploy.release.repository.url>
         <maven.deploy.snapshot.repository.url>
-            http://42.194.128.146:8081/nexus/content/repositories/smant-repostory-snapshots/
+            http://139.224.1.8:8081/nexus/content/repositories/smant-repostory-snapshots/
         </maven.deploy.snapshot.repository.url>
     </properties>
 
@@ -198,6 +200,28 @@
                 <artifactId>mybatis-typehandlers-jsr310</artifactId>
                 <version>${org.mybatis.typehandlers.jsr310.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus</artifactId>
+                <version>${com.baomidou.mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${com.baomidou.mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-extension</artifactId>
+                <version>${com.baomidou.mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-core</artifactId>
+                <version>${com.baomidou.mybatis-plus.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
@@ -386,12 +410,12 @@
 
     <distributionManagement>
         <repository>
-            <id>releases</id>
+            <id>Smant-Release</id>
             <name>Releases</name>
             <url>${maven.deploy.release.repository.url}</url>
         </repository>
         <snapshotRepository>
-            <id>snapshots</id>
+            <id>Smant-Snapshot</id>
             <name>Snapshot</name>
             <url>${maven.deploy.snapshot.repository.url}</url>
         </snapshotRepository>
