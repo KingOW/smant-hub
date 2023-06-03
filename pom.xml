@@ -420,4 +420,53 @@
             <url>${maven.deploy.snapshot.repository.url}</url>
         </snapshotRepository>
     </distributionManagement>
+    <profiles>
+        <profile>
+            <id>s_dev</id>
+            <properties>
+                <profiles.active>s_dev</profiles.active>
+                <nacos.server>139.224.1.8:8848</nacos.server>
+<!--                <nacos.server>139.224.1.8:8848</nacos.server>-->
+                <nacos.discovery.group>DEFAULT_GROUP</nacos.discovery.group>
+                <nacos.discovery.namespace>s_dev</nacos.discovery.namespace>
+                <nacos.discovery.cluster>PROD</nacos.discovery.cluster>
+                <nacos.config.group>DEFAULT_GROUP</nacos.config.group>
+                <nacos.config.namespace>s_dev</nacos.config.namespace>
+                <admin.client.url>http://139.224.1.8:9100</admin.client.url>
+                <!--                <logstash.address>127.0.0.1:4560</logstash.address>-->
+            </properties>
+
+        </profile>
+        <profile>
+            <id>s_test</id>
+            <properties>
+                <profiles.active>s_test</profiles.active>
+                <nacos.server>139.224.1.8:8848</nacos.server>
+                <!--                <nacos.server>139.224.1.8:8848</nacos.server>-->
+                <nacos.discovery.group>DEFAULT_GROUP</nacos.discovery.group>
+                <nacos.discovery.namespace>s_dev</nacos.discovery.namespace>
+                <nacos.discovery.cluster>PROD</nacos.discovery.cluster>
+                <nacos.config.group>DEFAULT_GROUP</nacos.config.group>
+                <nacos.config.namespace>s_test</nacos.config.namespace>
+                <admin.client.url>http://139.224.1.8:9100</admin.client.url>
+                <!--                <logstash.address>127.0.0.1:4560</logstash.address>-->
+            </properties>
+        </profile>
+
+        <profile>
+            <id>s_prod</id>
+            <properties>
+                <profiles.active>s_prod</profiles.active>
+                <nacos.server>139.224.1.8:8848</nacos.server>
+                <!--                <nacos.server>139.224.1.8:8848</nacos.server>-->
+                <nacos.discovery.group>DEFAULT_GROUP</nacos.discovery.group>
+                <nacos.discovery.namespace>s_dev</nacos.discovery.namespace>
+                <nacos.discovery.cluster>PROD</nacos.discovery.cluster>
+                <nacos.config.group>DEFAULT_GROUP</nacos.config.group>
+                <nacos.config.namespace>s_prod</nacos.config.namespace>
+                <admin.client.url>http://139.224.1.8:9100</admin.client.url>
+                <!--                <logstash.address>127.0.0.1:4560</logstash.address>-->
+            </properties>
+        </profile>
+    </profiles>
 </project>
