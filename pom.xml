@@ -422,9 +422,12 @@
     </distributionManagement>
     <profiles>
         <profile>
-            <id>s_dev</id>
+            <id>sdev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
-                <profiles.active>s_dev</profiles.active>
+                <profiles.active>sdev</profiles.active>
                 <nacos.server>139.224.1.8:8848</nacos.server>
 <!--                <nacos.server>139.224.1.8:8848</nacos.server>-->
                 <nacos.discovery.group>DEFAULT_GROUP</nacos.discovery.group>
@@ -438,9 +441,9 @@
 
         </profile>
         <profile>
-            <id>s_test</id>
+            <id>stest</id>
             <properties>
-                <profiles.active>s_test</profiles.active>
+                <profiles.active>stest</profiles.active>
                 <nacos.server>139.224.1.8:8848</nacos.server>
                 <!--                <nacos.server>139.224.1.8:8848</nacos.server>-->
                 <nacos.discovery.group>DEFAULT_GROUP</nacos.discovery.group>
@@ -454,9 +457,9 @@
         </profile>
 
         <profile>
-            <id>s_prod</id>
+            <id>sprod</id>
             <properties>
-                <profiles.active>s_prod</profiles.active>
+                <profiles.active>sprod</profiles.active>
                 <nacos.server>139.224.1.8:8848</nacos.server>
                 <!--                <nacos.server>139.224.1.8:8848</nacos.server>-->
                 <nacos.discovery.group>DEFAULT_GROUP</nacos.discovery.group>
