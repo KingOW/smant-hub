@@ -351,7 +351,87 @@
 
         </dependencies>
     </dependencyManagement>
+
+
+    <distributionManagement>
+        <repository>
+            <id>Smant-Release</id>
+            <name>Releases</name>
+            <url>${maven.deploy.release.repository.url}</url>
+        </repository>
+        <snapshotRepository>
+            <id>Smant-Snapshot</id>
+            <name>Snapshot</name>
+            <url>${maven.deploy.snapshot.repository.url}</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <profiles>
+        <profile>
+            <id>sdev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <profiles.active>sdev</profiles.active>
+                <nacos.server>139.224.1.8:8848</nacos.server>
+<!--                <nacos.server>139.224.1.8:8848</nacos.server>-->
+                <nacos.discovery.group>DEFAULT_GROUP</nacos.discovery.group>
+                <nacos.discovery.namespace>sdev</nacos.discovery.namespace>
+                <nacos.discovery.cluster>PROD</nacos.discovery.cluster>
+                <nacos.config.group>DEFAULT_GROUP</nacos.config.group>
+                <nacos.config.namespace>s_dev</nacos.config.namespace>
+                <admin.client.url>http://139.224.1.8:9100</admin.client.url>
+                <!--                <logstash.address>127.0.0.1:4560</logstash.address>-->
+            </properties>
+
+        </profile>
+        <profile>
+            <id>stest</id>
+            <properties>
+                <profiles.active>stest</profiles.active>
+                <nacos.server>139.224.1.8:8848</nacos.server>
+                <!--                <nacos.server>139.224.1.8:8848</nacos.server>-->
+                <nacos.discovery.group>DEFAULT_GROUP</nacos.discovery.group>
+                <nacos.discovery.namespace>stest</nacos.discovery.namespace>
+                <nacos.discovery.cluster>PROD</nacos.discovery.cluster>
+                <nacos.config.group>DEFAULT_GROUP</nacos.config.group>
+                <nacos.config.namespace>s_test</nacos.config.namespace>
+                <admin.client.url>http://139.224.1.8:9100</admin.client.url>
+                <!--                <logstash.address>127.0.0.1:4560</logstash.address>-->
+            </properties>
+        </profile>
+
+        <profile>
+            <id>sprod</id>
+            <properties>
+                <profiles.active>sprod</profiles.active>
+                <nacos.server>139.224.1.8:8848</nacos.server>
+                <!--                <nacos.server>139.224.1.8:8848</nacos.server>-->
+                <nacos.discovery.group>DEFAULT_GROUP</nacos.discovery.group>
+                <nacos.discovery.namespace>sprod</nacos.discovery.namespace>
+                <nacos.discovery.cluster>PROD</nacos.discovery.cluster>
+                <nacos.config.group>DEFAULT_GROUP</nacos.config.group>
+                <nacos.config.namespace>s_prod</nacos.config.namespace>
+                <admin.client.url>http://139.224.1.8:9100</admin.client.url>
+                <!--                <logstash.address>127.0.0.1:4560</logstash.address>-->
+            </properties>
+        </profile>
+    </profiles>
     <build>
+        <finalName>${project.artifactId}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!-- 引入所有 匹配文件进行过滤 -->
+                <includes>
+                    <include>application*</include>
+                    <include>bootstrap*</include>
+                    <include>log4j2*</include>
+                </includes>
+                <!-- 启用过滤 即该资源中的变量将会被过滤器中的值替换 -->
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <pluginManagement>
             <plugins>
                 <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
@@ -407,69 +487,4 @@
             </plugins>
         </pluginManagement>
     </build>
-
-    <distributionManagement>
-        <repository>
-            <id>Smant-Release</id>
-            <name>Releases</name>
-            <url>${maven.deploy.release.repository.url}</url>
-        </repository>
-        <snapshotRepository>
-            <id>Smant-Snapshot</id>
-            <name>Snapshot</name>
-            <url>${maven.deploy.snapshot.repository.url}</url>
-        </snapshotRepository>
-    </distributionManagement>
-    <profiles>
-        <profile>
-            <id>sdev</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <profiles.active>sdev</profiles.active>
-                <nacos.server>139.224.1.8:8848</nacos.server>
-<!--                <nacos.server>139.224.1.8:8848</nacos.server>-->
-                <nacos.discovery.group>DEFAULT_GROUP</nacos.discovery.group>
-                <nacos.discovery.namespace>s_dev</nacos.discovery.namespace>
-                <nacos.discovery.cluster>PROD</nacos.discovery.cluster>
-                <nacos.config.group>DEFAULT_GROUP</nacos.config.group>
-                <nacos.config.namespace>s_dev</nacos.config.namespace>
-                <admin.client.url>http://139.224.1.8:9100</admin.client.url>
-                <!--                <logstash.address>127.0.0.1:4560</logstash.address>-->
-            </properties>
-
-        </profile>
-        <profile>
-            <id>stest</id>
-            <properties>
-                <profiles.active>stest</profiles.active>
-                <nacos.server>139.224.1.8:8848</nacos.server>
-                <!--                <nacos.server>139.224.1.8:8848</nacos.server>-->
-                <nacos.discovery.group>DEFAULT_GROUP</nacos.discovery.group>
-                <nacos.discovery.namespace>s_dev</nacos.discovery.namespace>
-                <nacos.discovery.cluster>PROD</nacos.discovery.cluster>
-                <nacos.config.group>DEFAULT_GROUP</nacos.config.group>
-                <nacos.config.namespace>s_test</nacos.config.namespace>
-                <admin.client.url>http://139.224.1.8:9100</admin.client.url>
-                <!--                <logstash.address>127.0.0.1:4560</logstash.address>-->
-            </properties>
-        </profile>
-
-        <profile>
-            <id>sprod</id>
-            <properties>
-                <profiles.active>sprod</profiles.active>
-                <nacos.server>139.224.1.8:8848</nacos.server>
-                <!--                <nacos.server>139.224.1.8:8848</nacos.server>-->
-                <nacos.discovery.group>DEFAULT_GROUP</nacos.discovery.group>
-                <nacos.discovery.namespace>s_dev</nacos.discovery.namespace>
-                <nacos.discovery.cluster>PROD</nacos.discovery.cluster>
-                <nacos.config.group>DEFAULT_GROUP</nacos.config.group>
-                <nacos.config.namespace>s_prod</nacos.config.namespace>
-                <admin.client.url>http://139.224.1.8:9100</admin.client.url>
-                <!--                <logstash.address>127.0.0.1:4560</logstash.address>-->
-            </properties>
-        </profile>
-    </profiles>
 </project>
