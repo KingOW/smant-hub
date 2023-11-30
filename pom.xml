@@ -6,11 +6,11 @@
     <groupId>com.smant</groupId>
     <artifactId>smant-hub</artifactId>
     <packaging>pom</packaging>
-    <version>2023.05.23-RELEASE</version>
+    <version>2023.12.01-RELEASE</version>
     <properties>
         <!--项目配置-->
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <package.path>${project.build.directory}/app</package.path>
@@ -33,7 +33,7 @@
         <!-- Spring -->
         <org.springframework.cloud.version>2022.0.3</org.springframework.cloud.version>
         <com.alibaba.cloud.spring.version>2021.0.4.0</com.alibaba.cloud.spring.version>
-
+        <org.springframework.security.version>6.0.9</org.springframework.security.version>
         <!--        <org.springframework.boot.version>2.6.7</org.springframework.boot.version>-->
         <org.springframework.boot.version>3.1.0</org.springframework.boot.version>
         <org.springframework.springloaded.version>1.2.8.RELEASE</org.springframework.springloaded.version>
@@ -53,7 +53,7 @@
         <org.mybatis.typehandlers.jsr310.version>1.0.2</org.mybatis.typehandlers.jsr310.version>
         <org.mybatis.spring.version>3.0.2</org.mybatis.spring.version>
         <org.mybatis.spring.boot.version>3.0.1</org.mybatis.spring.boot.version>
-        <com.baomidou.mybatis-plus.version>3.5.3.1</com.baomidou.mybatis-plus.version>
+        <com.baomidou.mybatis-plus.version>3.5.3</com.baomidou.mybatis-plus.version>
 
 
         <com.alibaba.druid.version>1.2.18</com.alibaba.druid.version>
@@ -61,8 +61,11 @@
         <mysql.connector.java.version>8.0.33</mysql.connector.java.version>
         <org.postgresql.version>42.6.0</org.postgresql.version>
 
-        <io.springfox.boot.starter.version>3.0.0</io.springfox.boot.starter.version>
-        <org.springdoc.openapi.ui.version>1.7.0</org.springdoc.openapi.ui.version>
+        <io.swagger.core.v3.version>2.2.11</io.swagger.core.v3.version>
+
+        <io.springfox.springfox-boot-starter.version>3.0.0</io.springfox.springfox-boot-starter.version>
+        <org.springdoc.openapi.version>2.1.0</org.springdoc.openapi.version>
+        <com.github.xiaoymin.knife4j.openapi3.version>4.1.0</com.github.xiaoymin.knife4j.openapi3.version>
 
         <!-- Kafka-->
         <org.apacke.kafka.version>3.4.0</org.apacke.kafka.version>
@@ -84,6 +87,8 @@
         <org.apache.maven.resources.plugin.version>3.3.1</org.apache.maven.resources.plugin.version>
         <org.springframework.boot.maven.plugin.version>3.0.5</org.springframework.boot.maven.plugin.version>
 
+        <!-- Hibernate -->
+        <org.hibernate.validator.version>8.0.0.Final</org.hibernate.validator.version>
 
         <maven.deploy.release.repository.url>
             http://139.224.1.8:8081/nexus/content/repositories/smant-repostory-releases/
@@ -95,6 +100,14 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${org.hibernate.validator.version}</version>
+            </dependency>
+
+
             <dependency>
                 <groupId>org.apache.hbase</groupId>
                 <artifactId>hbase-client</artifactId>
@@ -132,11 +145,6 @@
                 <version>${org.apacke.kafka.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-ui</artifactId>
-                <version>${org.springdoc.openapi.ui.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>org.springframework.plugin</groupId>
@@ -157,12 +165,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
+            <!-- ... other dependency elements ... -->
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-boot-starter</artifactId>
-                <version>${io.springfox.boot.starter.version}</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+                <version>${org.springframework.boot.version}</version>
             </dependency>
+
 
             <dependency>
                 <groupId>mysql</groupId>
@@ -303,18 +312,47 @@
                 <version>${com.alibaba.druid.spring.boot.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${io.springfox.swagger2.version}</version>
-            </dependency>
 
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${io.springfox.swagger2.version}</version>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${io.swagger.core.v3.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-core</artifactId>
+                <version>${io.swagger.core.v3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-models</artifactId>
+                <version>${io.swagger.core.v3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>${io.springfox.springfox-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${org.springdoc.openapi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+                <version>${org.springdoc.openapi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <version>${com.github.xiaoymin.knife4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+                <version>${com.github.xiaoymin.knife4j.openapi3.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>springloaded</artifactId>
@@ -374,12 +412,12 @@
             <properties>
                 <profiles.active>sdev</profiles.active>
                 <nacos.server>139.224.1.8:8848</nacos.server>
-<!--                <nacos.server>139.224.1.8:8848</nacos.server>-->
+                <!--                <nacos.server>139.224.1.8:8848</nacos.server>-->
                 <nacos.discovery.group>DEFAULT_GROUP</nacos.discovery.group>
                 <nacos.discovery.namespace>sdev</nacos.discovery.namespace>
-                <nacos.discovery.cluster>PROD</nacos.discovery.cluster>
+                <nacos.discovery.cluster>SDEV</nacos.discovery.cluster>
                 <nacos.config.group>DEFAULT_GROUP</nacos.config.group>
-                <nacos.config.namespace>s_dev</nacos.config.namespace>
+                <nacos.config.namespace>sdev</nacos.config.namespace>
                 <admin.client.url>http://139.224.1.8:9100</admin.client.url>
                 <!--                <logstash.address>127.0.0.1:4560</logstash.address>-->
             </properties>
@@ -393,9 +431,9 @@
                 <!--                <nacos.server>139.224.1.8:8848</nacos.server>-->
                 <nacos.discovery.group>DEFAULT_GROUP</nacos.discovery.group>
                 <nacos.discovery.namespace>stest</nacos.discovery.namespace>
-                <nacos.discovery.cluster>PROD</nacos.discovery.cluster>
+                <nacos.discovery.cluster>STEST</nacos.discovery.cluster>
                 <nacos.config.group>DEFAULT_GROUP</nacos.config.group>
-                <nacos.config.namespace>s_test</nacos.config.namespace>
+                <nacos.config.namespace>stest</nacos.config.namespace>
                 <admin.client.url>http://139.224.1.8:9100</admin.client.url>
                 <!--                <logstash.address>127.0.0.1:4560</logstash.address>-->
             </properties>
@@ -409,9 +447,9 @@
                 <!--                <nacos.server>139.224.1.8:8848</nacos.server>-->
                 <nacos.discovery.group>DEFAULT_GROUP</nacos.discovery.group>
                 <nacos.discovery.namespace>sprod</nacos.discovery.namespace>
-                <nacos.discovery.cluster>PROD</nacos.discovery.cluster>
+                <nacos.discovery.cluster>SPROD</nacos.discovery.cluster>
                 <nacos.config.group>DEFAULT_GROUP</nacos.config.group>
-                <nacos.config.namespace>s_prod</nacos.config.namespace>
+                <nacos.config.namespace>sprod</nacos.config.namespace>
                 <admin.client.url>http://139.224.1.8:9100</admin.client.url>
                 <!--                <logstash.address>127.0.0.1:4560</logstash.address>-->
             </properties>
@@ -487,4 +525,11 @@
             </plugins>
         </pluginManagement>
     </build>
+<!--    <dependencies>-->
+<!--        <dependency>-->
+<!--            <groupId>com.smant</groupId>-->
+<!--            <artifactId>smant-common</artifactId>-->
+<!--            <version>2023.05.23-RELEASE</version>-->
+<!--        </dependency>-->
+<!--    </dependencies>-->
 </project>
