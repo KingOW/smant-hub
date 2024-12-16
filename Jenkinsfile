@@ -9,7 +9,7 @@ pipeline {
 
     tools {
         maven 'jenkins-tool-maven3.9.4'
-        jdk 'jenkins-tool-jdk21.0.4'
+        jdk 'jenkins-tool-jdk23.0.1'
         nodejs 'jenkins-tool-nodejs14.9.0'
     }
 
