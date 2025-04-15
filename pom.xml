@@ -26,7 +26,7 @@
         <redis.clients.jedis.version>5.2.0</redis.clients.jedis.version>
         <io.lettuce.lettuce-vore.version>6.5.1.RELEASE</io.lettuce.lettuce-vore.version>
         <com.google.guava.version>33.3.1-jre</com.google.guava.version>
-        <org.projectlombok.lombok.version>1.18.36</org.projectlombok.lombok.version>
+        <org.projectlombok.lombok.version>1.18.38</org.projectlombok.lombok.version>
         <mysql.connector.java.version>8.0.33</mysql.connector.java.version>
         <org.mybatis.spring.boot.version>3.0.4</org.mybatis.spring.boot.version>
         <com.baomidou.mybatis-plus.starter.version>3.5.9</com.baomidou.mybatis-plus.starter.version>
